@@ -21,6 +21,7 @@ if($id != 0){
 	
 	
 	$source_id = $text_info[0]['text_source'];
+	$source_text = $text_info[0]['descriptor'];
 	$text_block = $text_info[0]['text_block'];
 	
 } else {
@@ -33,44 +34,29 @@ if($id != 0){
 <html lang="en">
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/ >
-<title>Create or edit a block of text</title>
+<title>Edit Quote # <?php echo $id ?></title>
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="./the_scripts.js"></script>  
 </HEAD>
 <body>
-
 <header id="dynamic_header" class="page_header">
   <div class="centered">
-  <h1>Create or edit a block of text</h1>
+  <h1>Edit Quote # <?php echo $id ?></h1>
   </div>
 </header>
  <article id="wrapper" class="display width_80">
+ 	<a class="edit_button" href="/random_text_db/">Go Back</a> <br><br>
     <form id="generic_edit_form" method="POST">
      <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+     <input type="hidden" id="source_id" name="source_id" value="<?php echo $source_id ?>">
      <input type="hidden" id="char_count" name="char_count" value="<?php echo $char_count ?>">
 
- <div class="flex_container">
- 	<div class="flex_item">
- 		<a class="edit_button" href="/random_text_db">Back to the list</a>
- 	</div>
- 	<div class="flex_item">
- 		<?php if($id != 0): ?>
- 		  <a class="edit_button" href="/random_text_db/EditText.php">New entry</a>
- 		<?php else: ?>
- 		  <input id="submit_button" type="submit" >
- 		<?php endif ?>
- 	</div>
- 	<div class="flex_item">
- 		<a class="edit_button" href="/random_text_db/EditSource.php">New Source</a>
- 	</div>
- </div>
- <div class="flex_container">
- 	<div class="flex_item_6em">
- 		<a class="edit_button" href="/random_text_db/EditSource.php?id='$source_id'">New Source</a>
- 	</div>
- 	<div class="flex_item_90">
- 		<textarea id="text_block" name="text_block"  ><?php echo $text_block ?></textarea>
- 	</div>
+	   <label for="text_block_edit" class="instant_edit">The Text</label><br>
+	   <textarea id="text_block_edit" class="instant_edit" name='text_block'><?php echo $text_block ?></textarea>
+	   
+	   <br><br>
+	   <label for="text_source_edit">Source</label><br>
+	   <input type="text" id="text_source_edit" class="width_80 instant_edit" name='text_source' value="<?php echo $source_text; ?>"
  </div>
 <?php 
 // 	showArray($text_info);

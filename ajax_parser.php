@@ -27,6 +27,9 @@ switch ($action) {
     case 'set_quote';
         $response = set_quote($data);
         break;
+    case 'update_quote':
+        $response = update_quote($data);
+        break;
 }
 
 echo json_encode($response);

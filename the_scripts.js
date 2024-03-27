@@ -86,6 +86,29 @@ function ready() {
     
     ///////////////////////////////////////////////
      /*************** These are for EditText.php. ***************/
+    
+    let edit_text_fields = document.getElementsByClassName('instant_edit');
+    if(edit_text_fields.length > 0) {
+        let the_elements = Array.from(edit_text_fields);
+        the_elements.forEach(function(element) {
+            element.addEventListener("change", function(event){
+                event.preventDefault();
+                var the_data = {};
+                the_data['table'] = this.name;
+                the_data['value'] = this.value;
+                the_data['source_id'] = document.getElementById('source_id').value;
+                the_data['text_block_id'] = document.getElementById('id').value;
+                console.log(the_data);
+//                 console.log(this.value);
+//                 console.log(this.name);
+                
+                aj_promise = ajaxCall("update_quote", the_data)
+                 .then((json_response) => {
+                    console.log(json_response);
+                 });
+            });
+        });
+    } 
 
 
 }   

@@ -43,12 +43,10 @@ h3 {
 #the_source {
     width:95%;
 }
-/* 
-input[type="text"] {
+input[type="text"]#text_source_edit {
     width: 690px;
     margin: auto;
 }
- */
 textarea{
     width: 690px;
     height: 8em;

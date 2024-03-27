@@ -88,6 +88,30 @@ function set_quote($indata) {
 	return ['source_id' => $source_id, 'text_block_id' => $text_block_id, 'table_row' => $new_row];
 }
 
+function update_quote($indata) {
+	$text_block_id = $indata['text_block_id'];
+	$source_id     = $indata['source_id'];
+	$table         = $indata['table'];
+	$value         = $indata['value'];
+	
+	$id = 0;
+	$column = "";
+	if($table == 'text_block') {
+		$column = 'text_block';
+		$id = $text_block_id;
+	} elseif($table == 'text_source') {
+		$column = 'descriptor';
+		$id = $source_id;
+	}
+	
+	$sql = "UPDATE $table SET $column = ? WHERE id=?";
+	$db_obj = new DbClass();
+	$result = $db_obj->safeInsertUpdateDelete($sql, 'si', [$value, $id]);
+	$db_obj->closeDB();
+	
+	return $result;
+}
+
 /////////////////////////////
 // Checks to see if the given text is unique to that table
 function check_uniqueness($table, $column, $text){
@@ -154,7 +178,7 @@ function getSourceFromTextBlock($text_block_id) {
 function buildSourceSelect($current_choice=0, $disabled=0) {
 	$pulldownList = getPulldownList('text_source', 'id', 'descriptor');
 	
-	$buffer  = '<select id="text_source_pulldown" name="text_source_pulldown" class="instant_edit" >' . "\n";
+	$buffer  = '<select id="text_source_pulldown" name="text_source_pulldown" >' . "\n";
 	$buffer .= '<option value="0" >other</option>' . "\n";  
 	foreach($pulldownList as $choice) {
 		$buffer .= '<option value="' . $choice['id'] . '" ';  
@@ -188,7 +212,7 @@ function quoteRow($text_block_id, $text_block, $text_source) {
     function buildGenericSelectInstantEdit($tablename, $form_name, $id_name, $label_name, $current_choice=0, $disabled=0) {
         $pulldownList = getPulldownList($tablename, $id_name, $label_name);
 
-        echo '<select id="' . $form_name . '" name="' . $form_name . '" class="instant_edit" ';
+        echo '<select id="' . $form_name . '" name="' . $form_name . '" ';
         if($disabled) {
            echo ' disabled '; 
         }
