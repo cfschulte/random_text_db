@@ -41,12 +41,18 @@ function plainText2Breaks($plain_text){
 /////////////////////////////
 // Select a random bit of text
 function get_random_text() {
-	$rand_id = rand(1, 10);
 	
-	$sql  = "SELECT tb.text_block AS quote, ts.id AS src_id, ts.descriptor AS source FROM text_block AS tb " ;
+	$db_obj = new DbClass();
+	// How many quotes are there?
+	$sql = "SELECT COUNT(id) FROM text_block";
+	$db_result = $db_obj->getTableNoParams($sql);
+	
+	$ceiling = $db_result[0]['COUNT(id)'];
+	$rand_id = rand(1, $ceiling);
+	
+	$sql  = "SELECT tb.id, tb.text_block AS quote, ts.id AS src_id, ts.descriptor AS source FROM text_block AS tb " ;
 	$sql .= "JOIN text_source AS ts ON ts.id=tb.text_source " ;
 	$sql .= "WHERE tb.id=?";
-	$db_obj = new DbClass();
 	$db_result = $db_obj->simpleOneParamRequest($sql, 'i', $rand_id);
 	$db_obj->closeDB();
 	

@@ -27,10 +27,12 @@ function ready() {
         xhr.onreadystatechange = function(event){
           if (xhr.readyState == 4 && xhr.status == 200) {
              var response = JSON.parse(this.response);
-//                  console.log(response);
+                 console.log(response);
              document.getElementById('text_block').innerHTML = response.quote;
              document.getElementById('text_source_pulldown').value = response.src_id;
              document.getElementById('text_source').value = response.source;
+             var edit_link = '<a class="edit_button" href="./EditText.php?id=' + response.id + '">Edit this</a>' ;
+             document.getElementById('edit_link_space').innerHTML = edit_link;
           }
         };
         // error

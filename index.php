@@ -36,14 +36,16 @@ $db_obj->closeDB();
 	   
 	   <br>
 	   <div class="flex_container_100">
-	     <div class="flex_item_49">
+	     <div class="flex_item_40">
 		  <label for="text_source">Source</label>
 	     	<?php
 	     	echo buildSourceSelect();
 	     	?>
 		 </div>
-	     <div class="flex_item_49">
+	     <div class="flex_item_40">
 		  <input type="text" id="text_source" class="width_60" name='text_source' value="" >
+	     </div>
+	     <div id="edit_link_space" class="flex_item_8em">
 	     </div>
 	   </div>
 	   
