@@ -26,10 +26,10 @@ $db_obj->closeDB();
   </div>
 </header>
 <article id="wrapper" class="display width_80">
-	<h2>Show random text</h2>
-    <button id="show_quote_button">Show me something</button><br><br>
 	<div class="working_display">
-    	
+ 	<h2>Show random text</h2>
+    <button id="show_quote_button">Show me something</button><br><br>
+   	
 	<form id="new_quote">
 	   <label for="text_block">The Text</label>
 	   <textarea id="text_block" name='text_block'></textarea>

@@ -67,6 +67,16 @@ function ready() {
                 
                 row.innerHTML = json_response.table_row;
               }
+              
+              // Add the source to the pulldown if it's new.
+              if(json_response.new_source != null) {
+                 var src_select = document.getElementById('text_source_pulldown');
+                 var new_option = document.createElement('option');
+                 new_option.value = json_response.new_source.source_id;
+                 new_option.text = json_response.new_source.text_source;
+                 
+                 src_select.add(new_option);
+              }
            }).catch((error) => {
             console.log(`An error occured: ${error}`);
          });

@@ -76,6 +76,9 @@ function set_quote($indata) {
 	if(is_null($text_block_id) && is_null($source_id)) {
 		$source_id = addNewSource($text_source);
 		$text_block_id = addNewTextBlock($source_id, $text_block);
+		
+		$new_source = ['source_id' => $source_id, 'text_source' => $text_source];
+		
 	} elseif(is_null($text_block_id) && $source_id) { // The source has an id but the text does not. 
 		$text_block_id = addNewTextBlock($source_id, $text_block); 
 	} elseif(is_null($source_id) && $text_block_id) {  // The text has an id but the source does not. 
@@ -85,7 +88,7 @@ function set_quote($indata) {
 	
 	$new_row = quoteRow($text_block_id, $text_block, $text_source);
 	
-	return ['source_id' => $source_id, 'text_block_id' => $text_block_id, 'table_row' => $new_row];
+	return ['source_id' => $source_id, 'text_block_id' => $text_block_id, 'table_row' => $new_row, 'new_source' => $new_source];
 }
 
 function update_quote($indata) {

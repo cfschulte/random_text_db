@@ -45,8 +45,8 @@ if($id != 0){
   </div>
 </header>
  <article id="wrapper" class="display width_80">
+	<div class="working_display">
  	<a class="edit_button" href="/random_text_db/">Go Back</a> <br><br>
-    <form id="generic_edit_form" method="POST">
      <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
      <input type="hidden" id="source_id" name="source_id" value="<?php echo $source_id ?>">
      <input type="hidden" id="char_count" name="char_count" value="<?php echo $char_count ?>">
@@ -61,7 +61,7 @@ if($id != 0){
 <?php 
 // 	showArray($text_info);
 ?>
- </form>
+</div>
  </article>
 </body>
 </html>
