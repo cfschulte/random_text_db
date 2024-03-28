@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Mar 28, 2024 at 11:58 AM
+-- Generation Time: Mar 28, 2024 at 03:44 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -91,7 +91,10 @@ INSERT INTO `text_block` (`id`, `text_source`, `char_count`, `text_block`) VALUE
 (49, 15, 30, 'All that glitters is not gold.'),
 (50, 15, 68, 'All the world’s a stage, and all the men and women merely players.'),
 (51, 16, 114, 'The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.'),
-(52, 17, 44, 'Be yourself; everyone else is already taken.');
+(52, 17, 44, 'Be yourself; everyone else is already taken.'),
+(53, 18, 71, 'You will face many defeats in life, but never let yourself be defeated.'),
+(54, 19, 69, 'Success usually comes to those who are too busy to be looking for it.'),
+(55, 19, 78, 'Go confidently in the direction of your dreams! Live the life you\'ve imagined.');
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,9 @@ INSERT INTO `text_source` (`id`, `descriptor`) VALUES
 (14, 'Theodore Roosevelt'),
 (15, 'William Shakespeare'),
 (16, 'Helen Keller'),
-(17, 'Oscar Wilde');
+(17, 'Oscar Wilde'),
+(18, 'Maya Angelou'),
+(19, 'Henry David Thoreau');
 
 --
 -- Indexes for dumped tables
@@ -152,13 +157,13 @@ ALTER TABLE `text_source`
 -- AUTO_INCREMENT for table `text_block`
 --
 ALTER TABLE `text_block`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `text_source`
 --
 ALTER TABLE `text_source`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
