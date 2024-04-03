@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Mar 28, 2024 at 03:44 PM
+-- Generation Time: Apr 03, 2024 at 11:59 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -78,7 +78,7 @@ INSERT INTO `text_block` (`id`, `text_source`, `char_count`, `text_block`) VALUE
 (36, 1, 341, 'The illusion of freedom will continue as long as it\'s profitable to continue the illusion. At the point where the illusion becomes too expensive to maintain, they will just take down the scenery, they will pull back the curtains, they will move the tables and chairs out of the way and you will see the brick wall at the back of the theater.'),
 (37, 1, 64, 'There\'s a big difference between kneeling down and bending over.'),
 (38, 1, 76, 'Government is the Entertainment division of the military-industrial complex.'),
-(39, 7, 57, 'he way to get started is to quit talking and begin doing.'),
+(39, 7, 57, 'The way to get started is to quit talking and begin doing.'),
 (40, 8, 663, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque ut massa varius bibendum. Quisque tincidunt turpis quis tincidunt consequat. Proin urna sem, condimentum eget accumsan vitae, rhoncus vitae diam. Donec sit amet magna ut sapien dapibus pretium quis ac leo. Nulla eu tellus eros. Integer lobortis erat ac justo scelerisque rhoncus. Maecenas sapien odio, ornare eget nisl porttitor, pretium tempor enim. Proin enim magna, ultricies eu mi eget, pellentesque maximus risus. Praesent euismod metus ut maximus egestas. Nam sed vestibulum tellus. Morbi id ipsum nec ligula aliquet auctor. In leo magna, efficitur a luctus eu, lobortis eget lorem.'),
 (41, 8, 418, 'Nunc condimentum lectus quis imperdiet elementum. Nulla urna ligula, venenatis vel lobortis consequat, tempus sit amet massa. Phasellus semper felis ultrices diam euismod, nec scelerisque diam fringilla. Donec luctus augue in erat scelerisque dignissim. Fusce tincidunt mi maximus justo m bnm,./enim blandit ut. Sed pellentesque, dolor eget ornare gravida, libero erat pulvinar justo, nec suscipit erat ante quis urna.'),
 (42, 8, 933, 'Sed leo nisi, dignissim sit amet velit non, consequat ullamcorper ante. Maecenas vel leo sit amet enim rhoncus fringilla. Quisque magna ex, laoreet sit amet orci vel, euismod consectetur metus. Proin blandit dui non interdum rutrum. Aenean egestas pretium porttitor. Quisque et posuere metus, a scelerisque ipsum. Vivamus consequat magna tempor libero blandit, eu lacinia mi ultrices. Morbi volutpat, sapien id volutpat porta, lorem diam faucibus orci, a condimentum libero ipsum gravida nisi. Integer id est quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla varius quis ex ut feugiat. Aliquam consequat, libero nec ornare egestas, lectus erat viverra mauris, in posuere orci sapien et augue. Sed egestas lorem vestibulum eros porttitor dapibus. Quisque eu lectus odio. Duis faucibus, neque in pharetra vulputate, turpis sapien scelerisque sem, in imperdiet nunc diam vulputate nulla.'),
@@ -94,7 +94,8 @@ INSERT INTO `text_block` (`id`, `text_source`, `char_count`, `text_block`) VALUE
 (52, 17, 44, 'Be yourself; everyone else is already taken.'),
 (53, 18, 71, 'You will face many defeats in life, but never let yourself be defeated.'),
 (54, 19, 69, 'Success usually comes to those who are too busy to be looking for it.'),
-(55, 19, 78, 'Go confidently in the direction of your dreams! Live the life you\'ve imagined.');
+(55, 19, 78, 'Go confidently in the direction of your dreams! Live the life you\'ve imagined.'),
+(56, 20, 89, 'There are only two hard things in Computer Science: cache invalidation and naming things.');
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,8 @@ INSERT INTO `text_source` (`id`, `descriptor`) VALUES
 (16, 'Helen Keller'),
 (17, 'Oscar Wilde'),
 (18, 'Maya Angelou'),
-(19, 'Henry David Thoreau');
+(19, 'Henry David Thoreau'),
+(20, 'Phil Karlton');
 
 --
 -- Indexes for dumped tables
@@ -157,13 +159,13 @@ ALTER TABLE `text_source`
 -- AUTO_INCREMENT for table `text_block`
 --
 ALTER TABLE `text_block`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `text_source`
 --
 ALTER TABLE `text_source`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
