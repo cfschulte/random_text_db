@@ -170,6 +170,64 @@ function addNewTextBlock($source_id, $text_block) {
 }
 
 /////////////////////////////
+// Adds a new site 
+function add_new_site($indata) {
+	$url = $indata['url'];
+	$title = $indata['title'];
+	$site_category = $indata['site_category'];
+	$category_edit = $indata['category_edit'];
+	$site_id = 0;
+	
+	$site_category = newOrUpdateSiteCategory($site_category, $category_edit);
+	
+// 	if($site_category == 0) {
+// 		return $site_category;
+// 	}
+	
+	$db_obj = new DbClass();
+	$sql = "INSERT INTO saved_site (site_category, url, title) VALUS (?,?,?)";
+	$result = $db_obj->safeInsertUpdateDelete($sql, 'sss', [$site_category, $url, $title]);
+	$site_id = $db_obj->lastInsertedID();
+	$db_obj->closeDB();
+	
+	
+	return $site_id;
+}
+
+/////////////////////////////
+// Returns the index of the category - It seems that always rewriting the descriptor
+// is less work/clock cycles than checking whether there are actually any updates to 
+// be made.
+function newOrUpdateSiteCategory($category_id, $descriptor) {
+	$db_obj = new DbClass();
+	$cat_index = $category_id;
+	
+	// $category_id will be zero if a new one must be made.
+	if($category_id == 0) {
+		$sql = 'INSERT INTO site_category (descriptor) VALUES (?)';
+		$db_result = $db_obj->safeInsertUpdateDelete($sql, 's', [$descriptor]);
+		
+		
+		if($db_result > 0) { // check for success. 
+			$cat_index = $db_obj->lastInsertedID();
+		} else {
+			$db_obj->closeDB();
+			return $db_result;
+		}
+	} else {
+		$sql = 'UPDATE site_category SET descriptor=? WHERE id=?';
+		$db_result = $db_obj->safeInsertUpdateDelete($sql, 'si', [$descriptor, $category_id]);
+		if($db_result == 0) {
+			$db_obj->closeDB();
+			return $db_result;
+		} 
+	}
+	$db_obj->closeDB();
+	
+	return $cat_index;
+}
+
+/////////////////////////////
 //
 function getSourceFromTextBlock($text_block_id) {
 	$sql = "SELECT source_id FROM text_block WHERE id=?";
@@ -179,6 +237,26 @@ function getSourceFromTextBlock($text_block_id) {
 	$db_obj->closeDB();
 }
 
+
+//////////////////////////////////////////////////////////
+// stuff to build the interface 
+
+function buildSiteCatSelect($current_choice=0, $disabled=0) {
+	$pulldownList = getPulldownList('site_category', 'id', 'descriptor');
+	
+	$buffer  = '<select id="site_category" name="site_category" >' . "\n";
+	$buffer .= '<option value="0" >New</option>' . "\n";  
+	foreach($pulldownList as $choice) {
+		$buffer .= '<option value="' . $choice['id'] . '" ';  
+		if($choice['id'] == $current_choice) {
+		    $buffer .= 'selected';
+		}
+		$buffer .= '>' . $choice['descriptor'] . '</option>' . "\n";
+	}
+	$buffer .= "</select>\n";
+	
+	return $buffer;
+}
 
 
 //////////////////////////////////////////////////////////

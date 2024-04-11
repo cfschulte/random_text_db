@@ -30,6 +30,9 @@ switch ($action) {
     case 'update_quote':
         $response = update_quote($data);
         break;
+    case 'add_new_site':
+        $response = add_new_site($data);
+        break;
 }
 
 echo json_encode($response);

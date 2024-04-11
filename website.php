@@ -12,9 +12,10 @@ if(array_key_exists('id', $_GET)) {
 
 if($id != 0){
 	$db_obj = new DbClass();
-	$sql  = "SELECT url, title FROM ";
-	$sql .= " saved_site ";
-	$sql .= " WHERE id=? ";
+	$sql  = "SELECT url, title, site_category, cat.descriptor  ";
+	$sql .= " FROM saved_site ";
+	$sql .= " JOIN site_category AS cat ON cat.id=saved_site.site_category ";
+	$sql .= " WHERE saved_site.id=? ";
 
 	$text_info = $db_obj->simpleOneParamRequest($sql, 'i', $id);
 	$db_obj->closeDB();
@@ -22,10 +23,14 @@ if($id != 0){
 	
 	$url = $text_info[0]['url'];
 	$title = $text_info[0]['title'];
+	$site_category = $text_info[0]['site_category'];
+	$descriptor = $text_info[0]['descriptor'];
 	
 } else {
 	$url = "";
 	$title = "";
+	$site_category = 0;
+	$descriptor = "";
 }
 ?>
 <!DOCTYPE html>
@@ -41,28 +46,36 @@ if($id != 0){
   <div class="centered">
 <?php if($id > 0) : ?>
   <h1>Edit site access for # <?php echo $id ?></h1>
-<?php 
-// 	showArray($text_info);
-?>
 <?php else: ?>
   <h1>Enter a new site and url</h1>
 <?php endif; ?>
   </div>
 </header>
+
  <article id="wrapper" class="display">
+<?php 
+// 	showArray($text_info);
+// 	showDebug($id);
+?>
   	<a class="edit_button" href="/random_text_db/">Go Back</a> <br><br>
 
    <div class="grid_container">
-	<div>
-	<b>URL:</b> <input class="width_85 <?php if($id>0){echo 'instant_edit_url'} ?>" type=text id="url" name="url" value=<?php echo $url ?> >
+	<div class="url-wrap">
+	<b>URL:</b> <input class="width_85 <?php if($id>0){echo 'instant_edit_url';} ?>" type=text id="url" name="url" value="<?php echo $url; ?>" >
    </div>
 
-	<div>
-	<b>Title:</b> <input class="width_75 <?php if($id>0){echo 'instant_edit_url'} ?>"  type=text id="title" name="title" value=<?php echo $title ?> >
+	<div class="title-wrap">
+	<b>Title:</b> <input class="width_75 <?php if($id>0){echo 'instant_edit_url';} ?>"  type=text id="title" name="title" value="<?php echo $title ?>" >
+   </div> 
+	<div class="category-select-wrap">
+	<b>Category:</b> <?php echo buildSiteCatSelect($site_category); ?>
+   </div> 
+	<div class="category-edit-wrap">
+	<b>Other:</b> <input class="width_75 <?php if($id>0){echo 'instant_edit_url';} ?>"  type=text id="category_edit" name="category_edit" value="<?php echo $descriptor ?>" >
    </div> 
   </div>
   <div>
-<?php if($id=0): ?>
+<?php if($id==0): ?>
 	<button id="add_new_site" value="add_new_site">Deposit</button>
 <?php endif; ?>
   </div>

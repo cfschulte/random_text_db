@@ -44,16 +44,29 @@ CREATE TABLE `text_source` (
 LOAD DATA LOCAL INFILE 'source.txt' INTO TABLE source FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n' (id,descriptor);
 
 --
---  text_source 
+--  saved_site 
 -- 
 DROP TABLE IF EXISTS `saved_site`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `saved_site` (
-  `id`    mediumint NOT NULL AUTO_INCREMENT,
-  `url`   varchar(256) NOT NULL,
-  `title`   varchar(128) NOT NULL,
+  `id`             mediumint NOT NULL AUTO_INCREMENT,
+  `site_category`  mediumint DEFAULT NULL,
+  `url`            varchar(256) NOT NULL,
+  `title`          varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- LOAD DATA LOCAL INFILE 'source.txt' INTO TABLE source FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n' (id,descriptor);
+
+--
+--  site_category 
+-- 
+DROP TABLE IF EXISTS `site_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `site_category` (
+  `id`            mediumint NOT NULL AUTO_INCREMENT,
+  `display_order` int DEFAULT NULL,
+  `descriptor`    varchar(75) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

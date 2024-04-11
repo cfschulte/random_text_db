@@ -126,7 +126,40 @@ function ready() {
      /*************** These are for website.php. ***************/
     let add_new_site = document.getElementById('add_new_site');
     if( add_new_site != null) {
-        console.log('Add a site!');
+      let site_category_select = document.getElementById('site_category');
+      
+      // Choose whether the category editor edits or creates a new category
+      site_category_select.addEventListener('change', function(){
+          selection = site_category_select.value;
+          console.log( site_category_select.options[site_category_select.selectedIndex].innerHTML );
+          if(selection != 0) {
+              document.getElementById('category_edit').value = site_category_select.options[site_category_select.selectedIndex].innerHTML;
+          } else {
+              document.getElementById('category_edit').value = "";
+          }
+          
+      });
+      add_new_site.addEventListener('click', function(event){
+         console.log('Add a site!');
+          event.preventDefault();
+          var the_data = {};
+          
+          the_data['url'] = document.getElementById('url').value;
+          the_data['title'] = document.getElementById('title').value;
+          the_data['site_category'] = site_category_select.value;
+          the_data['category_edit'] = document.getElementById('category_edit').value;
+                    
+          console.log(the_data);
+          
+          // AJAX Call
+          aj_promise = ajaxCall("add_new_site", the_data)
+           .then((json_response) => {
+              console.log(json_response);
+           });
+      });
+
+        
+        
     } else {
         let url_text_fields = document.getElementsByClassName('instant_edit_url');
         if(url_text_fields.length > 0){
