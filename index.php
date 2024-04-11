@@ -1,7 +1,7 @@
 <?php
 // index.php -  Tue Jan 2 10:42:24 CST 2024
 // 
-require_once "functions.php";
+require_once "controllers/functions.php";
 
 $db_obj = new DbClass();
 $sql = "SELECT text_block.id, text_block.text_block, text_source.descriptor FROM text_block ";
