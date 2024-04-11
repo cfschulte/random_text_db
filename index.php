@@ -14,7 +14,7 @@ $db_obj->closeDB();
 <html lang="en">
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/ >
-<title>Collect Random Text Samples</title>
+<title>Collect Quotes &  Websites</title>
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="./the_scripts.js"></script>  
 
@@ -22,11 +22,13 @@ $db_obj->closeDB();
 <body>
 <header id="dynamic_header" class="page_header">
   <div class="centered">
-  <h1>Collect Random Text Samples</h1>
+  <h1>Collect Quotes &  Websites</h1>
   </div>
 </header>
 <article id="wrapper" class="display width_80">
 	<div class="working_display">
+ 	<h2>Handle websites</h2>
+ 	<a class="edit_button" href="./website.php">Enter a site</a>
  	<h2>Show random text</h2>
     <button id="show_quote_button">Show me something</button><br><br>
    	

@@ -6,7 +6,12 @@
 // management utilities. 
 
 $root = $_SERVER['DOCUMENT_ROOT'] ;
-set_include_path($root . '/random_text_db/:');
+set_include_path($root . '/random_text_db/:' . 
+			     $root .  '/random_text_db/models:' . 
+			     $root .  '/random_text_db/controllers:' 
+			     );
+
+
 
 require_once "DbClass.php";
 

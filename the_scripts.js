@@ -19,7 +19,7 @@ function ready() {
   if(show_quote_button != null){
     show_quote_button.addEventListener('click', function(event){           
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/random_text_db/ajax_parser.php", true);
+        xhr.open("POST", "/random_text_db/controllers/ajax_parser.php", true);
         xhr.responsetype = "json";
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
        
@@ -121,7 +121,19 @@ function ready() {
             });
         });
     } 
-
+    
+    ///////////////////////////////////////////////
+     /*************** These are for website.php. ***************/
+    let add_new_site = document.getElementById('add_new_site');
+    if( add_new_site != null) {
+        console.log('Add a site!');
+    } else {
+        let url_text_fields = document.getElementsByClassName('instant_edit_url');
+        if(url_text_fields.length > 0){
+            let the_elements = Array.from(edit_text_fields);
+            console.log(the_elements)
+        }
+    }
 
 }   
 
@@ -130,7 +142,7 @@ function ready() {
 //----------------------------------------
 async function ajaxCall(action='', data={}) {
 // 	console.log(id); 
-	const response = await fetch("/random_text_db/ajax_parser.php", {
+	const response = await fetch("/random_text_db/controllers/ajax_parser.php", {
 		// Be aware that there are other options if you want more flexibility
 		method: "POST", // *GET, POST, PUT, DELETE, etc.
 		headers: {

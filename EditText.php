@@ -1,7 +1,7 @@
 <?php
 // EditText.php -  Tue Jan 2 13:32:04 CST 2024
 // 
-require_once "functions.php";
+require_once "controllers/functions.php";
 
 $id = 0;
 

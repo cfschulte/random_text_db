@@ -16,6 +16,10 @@ html, body {
   padding: 0;
   margin: 0; }
 
+article {
+	width: 90%;
+}
+
 h1 {
   padding-left: 1em; }
 
@@ -250,71 +254,19 @@ span.width_30 {
 
 /*************************** Grid exp *******************************/
 .grid_container {
-  /* 
-  display: grid | inline-grid;
- */
-  display: grid;
   width: 90%;
   margin: auto;
-  grid-template-columns: [first] 30% [second] 40% [third] 50% [fourth] 75% [end]; }
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 2fr 1fr ; 
+  }
 
-.grid_item-first {
-  grid-column-start: first;
-  grid-column-end: second; }
-
-.grid_item-second {
-  grid-column-start: second;
-  grid-column-end: third; }
-
-.grid_item-third {
-  grid-column-start: third;
-  grid-column-end: fourth; }
-
-.grid_item-fourth {
-  grid-column-start: fourth;
-  grid-column-end: end; }
-
-.contact_wrapper {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1.5em; }
-
-ul.existing_contacts {
-  margin-left: -1em;
-  padding-left: -3em;
-  padding-right: -3em;
-  width: 100%;
-  list-style: none; }
-
-ul.existing_contacts li {
-  margin-left: -1em;
-  padding-left: -3em;
-  padding-right: -3em; }
-
-.edit_contact {
-  background-color: #ededed;
-  cursor: default; }
-
-.edit_contact:hover {
-  background-color: #acacac;
-  cursor: pointer; }
-
-.flex_item_contact_50 {
-  flex-basis: 49%;
-  padding: 0em; }
-
-.current_contact_display {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1.5em; }
-
-.current_contact_display ul {
-  list-style: none; }
-
-.new_contact_text {
-  width: 15em; }
+.grid_container > div {
+/* 
+  background-color: #EDE7F6;
+ */
+  padding 0.5em;
+}
 
 #add_remove_dialog, #edit_contact_dialog {
   margin-bottom: 1em; }
