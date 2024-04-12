@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Apr 03, 2024 at 11:59 AM
+-- Generation Time: Apr 12, 2024 at 07:20 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Database: `random_text_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saved_site`
+--
+
+DROP TABLE IF EXISTS `saved_site`;
+CREATE TABLE `saved_site` (
+  `id` mediumint(9) NOT NULL,
+  `site_category` mediumint(9) DEFAULT NULL,
+  `url` varchar(256) NOT NULL,
+  `title` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `saved_site`
+--
+
+INSERT INTO `saved_site` (`id`, `site_category`, `url`, `title`) VALUES
+(1, 3, 'https://xeno-canto.org/', 'xeno-canto - bird sounds');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `site_category`
+--
+
+DROP TABLE IF EXISTS `site_category`;
+CREATE TABLE `site_category` (
+  `id` mediumint(9) NOT NULL,
+  `display_order` int(11) DEFAULT NULL,
+  `descriptor` varchar(75) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `site_category`
+--
+
+INSERT INTO `site_category` (`id`, `display_order`, `descriptor`) VALUES
+(1, 1, 'Don\'t forget'),
+(2, 2, 'Web development'),
+(3, 3, 'Science and Technology\r\n'),
+(4, NULL, 'Time wasters'),
+(5, NULL, 'Tech thoughts'),
+(6, NULL, 'Stuff'),
+(7, NULL, 'Experiments');
 
 -- --------------------------------------------------------
 
@@ -140,6 +187,18 @@ INSERT INTO `text_source` (`id`, `descriptor`) VALUES
 --
 
 --
+-- Indexes for table `saved_site`
+--
+ALTER TABLE `saved_site`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `site_category`
+--
+ALTER TABLE `site_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `text_block`
 --
 ALTER TABLE `text_block`
@@ -154,6 +213,18 @@ ALTER TABLE `text_source`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `saved_site`
+--
+ALTER TABLE `saved_site`
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `site_category`
+--
+ALTER TABLE `site_category`
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `text_block`
