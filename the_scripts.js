@@ -155,7 +155,12 @@ function ready() {
           aj_promise = ajaxCall("add_new_site", the_data)
            .then((json_response) => {
               console.log(json_response);
-           });
+              
+              document.getElementById('url').value = "";
+              document.getElementById('title').value = "";
+              site_category_select.value = 0;
+              document.getElementById('category_edit').value = "";
+            });
       });
 
         
