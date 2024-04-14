@@ -179,14 +179,10 @@ function add_new_site($indata) {
 	$site_id = 0;
 	
 	$site_category = newOrUpdateSiteCategory($site_category, $category_edit);
-	
-// 	if($site_category == 0) {
-// 		return $site_category;
-// 	}
-	
+	return $site_category;
 	$db_obj = new DbClass();
-	$sql = "INSERT INTO saved_site (site_category, url, title) VALUS (?,?,?)";
-	$result = $db_obj->safeInsertUpdateDelete($sql, 'sss', [$site_category, $url, $title]);
+	$sql = "INSERT INTO saved_site (site_category, url, title) VALUES (?,?,?)";
+	$result = $db_obj->safeInsertUpdateDelete($sql, 'iss', [$site_category, $url, $title]);
 	$site_id = $db_obj->lastInsertedID();
 	$db_obj->closeDB();
 	
