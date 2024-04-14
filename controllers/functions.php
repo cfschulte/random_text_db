@@ -177,9 +177,10 @@ function add_new_site($indata) {
 	$site_category = $indata['site_category'];
 	$category_edit = $indata['category_edit'];
 	$site_id = 0;
+// 	return $site_category;
 	
 	$site_category = newOrUpdateSiteCategory($site_category, $category_edit);
-	return $site_category;
+// 	return  $site_category;
 	$db_obj = new DbClass();
 	$sql = "INSERT INTO saved_site (site_category, url, title) VALUES (?,?,?)";
 	$result = $db_obj->safeInsertUpdateDelete($sql, 'iss', [$site_category, $url, $title]);
@@ -213,10 +214,11 @@ function newOrUpdateSiteCategory($category_id, $descriptor) {
 	} else {
 		$sql = 'UPDATE site_category SET descriptor=? WHERE id=?';
 		$db_result = $db_obj->safeInsertUpdateDelete($sql, 'si', [$descriptor, $category_id]);
-		if($db_result == 0) {
-			$db_obj->closeDB();
-			return $db_result;
-		} 
+// 		if($db_result == 0) {
+// 			$db_obj->closeDB();
+// 			return $db_result;
+// 			return 'hmm';
+// 		} 
 	}
 	$db_obj->closeDB();
 	
