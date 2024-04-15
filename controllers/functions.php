@@ -181,16 +181,35 @@ function add_new_site($indata) {
 	
 	$site_category = newOrUpdateSiteCategory($site_category, $category_edit);
 // 	return  $site_category;
-	$db_obj = new DbClass();
-	$sql = "INSERT INTO saved_site (site_category, url, title) VALUES (?,?,?)";
-	$result = $db_obj->safeInsertUpdateDelete($sql, 'iss', [$site_category, $url, $title]);
-	$site_id = $db_obj->lastInsertedID();
-	$db_obj->closeDB();
-	
+ 
+	$site_id = check_url($url);
+	if( $site_id == null  ){ // add a new site if it doesn't exist 
+		$db_obj = new DbClass();
+		$sql = "INSERT INTO saved_site (site_category, url, title) VALUES (?,?,?)";
+		$db_result = $db_obj->safeInsertUpdateDelete($sql, 'iss', [$site_category, $url, $title]);
+		$site_id = $db_obj->lastInsertedID();
+		$db_obj->closeDB();
+	} else { // try updating the existing site 
+		$db_obj = new DbClass();
+		$sql = "UPDATE saved_site SET site_category=?, url=?, title=? WHERE id=?";
+		$db_result = $db_obj->safeInsertUpdateDelete($sql, 'issi', [$site_category, $url, $title, $site_id]);
+		$db_obj->closeDB();
+	}
 	
 	return $site_id;
 }
 
+
+/////////////////////////////
+// Checks to see if a url is already in the database 
+function check_url($url) {
+	$sql = "SELECT id FROM saved_site WHERE url=?";
+	$db_obj = new DbClass();
+	$db_result = $db_obj->simpleOneParamRequest($sql, 's', $url);
+	$db_obj->closeDB();
+	
+	return $db_result[0]['id'];
+}
 /////////////////////////////
 // Returns the index of the category - It seems that always rewriting the descriptor
 // is less work/clock cycles than checking whether there are actually any updates to 
