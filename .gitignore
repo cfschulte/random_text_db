@@ -1,2 +1,3 @@
 random_text_db.bbprojectd
 .DS_Store
+controllers/db_config.php
